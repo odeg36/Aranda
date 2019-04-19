@@ -94,9 +94,9 @@ class User extends BaseUser
      */
     protected $usuNombre;
     /**
-     * @ORM\Column(type="string", name="UsuClaveTemp",length=255, nullable=true)
+     * @ORM\Column(type="string", name="UsuNumeroTelefonica",length=255, nullable=true)
      */
-    protected $UsuClaveTemp;
+    protected $usuNumeroTelefonica;
 
     /**
      * @ORM\Column(type="string", name="UsuMobil",length=20)
@@ -110,16 +110,6 @@ class User extends BaseUser
      * @ORM\Column(type="string", name="UsuExt",length=10,nullable=true)
      */
     protected $usuExt;
-
-    /**
-     * Get id
-     *
-     * @return int $id
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
 
     /**
@@ -147,27 +137,27 @@ class User extends BaseUser
     }
 
     /**
-     * Set usuClaveTemp.
+     * Set usuNumeroTelefonica.
      *
-     * @param string|null $usuClaveTemp
+     * @param string|null $usuNumeroTelefonica
      *
      * @return User
      */
-    public function setUsuClaveTemp($usuClaveTemp = null)
+    public function setUsuNumeroTelefonica($usuNumeroTelefonica = null)
     {
-        $this->UsuClaveTemp = $usuClaveTemp;
+        $this->usuNumeroTelefonica = $usuNumeroTelefonica;
 
         return $this;
     }
 
     /**
-     * Get usuClaveTemp.
+     * Get usuNumeroTelefonica.
      *
      * @return string|null
      */
-    public function getUsuClaveTemp()
+    public function getUsuNumeroTelefonica()
     {
-        return $this->UsuClaveTemp;
+        return $this->usuNumeroTelefonica;
     }
 
     /**

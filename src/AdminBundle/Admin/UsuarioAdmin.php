@@ -7,6 +7,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Symfony\Component\Validator\Constraints\NotNull;
 
 class UsuarioAdmin extends AbstractAdmin
 {
@@ -25,11 +26,8 @@ class UsuarioAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('firstname', null, [
+            ->add('usuNombre', null, [
                 'label' => 'campo.nombres'
-            ])
-            ->add('lastname', null, [
-                'label' => 'campo.apellidos'
             ])
             ->add('email', null, [
             ])
@@ -48,11 +46,8 @@ class UsuarioAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('firstname', null, [
+            ->add('usuNombre', null, [
                 'label' => 'campo.nombres'
-            ])
-            ->add('lastname', null, [
-                'label' => 'campo.apellidos'
             ])
             ->add('email', null, [
             ])
@@ -65,14 +60,6 @@ class UsuarioAdmin extends AbstractAdmin
                 ])
                 ->add('groups', null, [
                     'label' => 'campo.grupos'
-                ])
-            ;
-        }
-        if ($this->isGranted('ROLE_ALLOWED_TO_SWITCH')) {
-            $listMapper
-                ->add('impersonating', 'string', [
-                    'label' => 'campo.personificar',
-                    'template' => 'SonataUserBundle:Admin:Field/impersonating.html.twig'
                 ])
             ;
         }
@@ -102,7 +89,6 @@ class UsuarioAdmin extends AbstractAdmin
             ->tab('Security', ['label' => 'campo.seguridad'])
             ->with('Status', array('class' => 'col-md-4', 'label' => 'titulo.estado'))->end()
             ->with('Groups', array('class' => 'col-md-4', 'label' => 'titulo.grupos'))->end()
-            ->with('Keys', array('class' => 'col-md-4', 'label' => 'titulo.llaves'))->end()
             ->with('Roles', array('class' => 'col-md-12', 'label' => 'titulo.roles'))->end()
             ->end()
         ;
@@ -134,7 +120,10 @@ class UsuarioAdmin extends AbstractAdmin
             ->tab('User')
             ->with('General')
             ->add('username', null, [
-                'label' => 'campo.username'
+                'label' => 'campo.username',
+                'constraints' => [
+                    new NotNull()
+                ]
             ])
             ->add('email')
             ->add('plainPassword', $textType, array(
@@ -150,39 +139,12 @@ class UsuarioAdmin extends AbstractAdmin
                 'required' => false,
                 'label' => 'campo.fecha_nacimiento'
             ))
-            ->add('firstname', null, array('required' => false,
+            ->add('usuNombre', null, array('required' => false,
                 'label' => 'campo.nombres'))
-            ->add('lastname', null, array('required' => false,
-                'label' => 'campo.apellidos'))
-            ->add('website', $urlType, array('required' => false,
-                'label' => 'campo.sitio_web'))
-            ->add('biography', $textType, array('required' => false,
-                'label' => 'campo.biografia'))
-            ->add('gender', $userGenderType, array(
-                'required' => true,
-                'label' => 'campo.genero',
-                'translation_domain' => $this->getTranslationDomain(),
-            ))
-            ->add('locale', $localeType, array('required' => false,
-                'label' => 'campo.ubicacion'))
-            ->add('timezone', $timezoneType, array('required' => false,
-                'label' => 'campo.zona_horaria'))
-            ->add('phone', null, array('required' => false,
+            ->add('usuMobil', null, array('required' => false,
+                'label' => 'campo.mobil'))
+            ->add('usuPhone', null, array('required' => false,
                 'label' => 'campo.telefono'))
-            ->end()
-            ->with('Social')
-            ->add('facebookUid', null, array('required' => false,
-                'label' => 'campo.facebook_id'))
-            ->add('facebookName', null, array('required' => false,
-                'label' => 'campo.facebook_nombre'))
-            ->add('twitterUid', null, array('required' => false,
-                'label' => 'campo.twitter_id'))
-            ->add('twitterName', null, array('required' => false,
-                'label' => 'campo.twitter_nombre'))
-            ->add('gplusUid', null, array('required' => false,
-                'label' => 'campo.google_id'))
-            ->add('gplusName', null, array('required' => false,
-                'label' => 'campo.google_nombre'))
             ->end()
             ->end()
             ->tab('Security')
@@ -206,12 +168,6 @@ class UsuarioAdmin extends AbstractAdmin
                 'required' => false,
             ))
             ->end()
-            ->with('Keys')
-            ->add('token', null, array('required' => false,
-                'label' => 'campo.token',))
-            ->add('twoStepVerificationCode', null, array('required' => false,
-                'label' => 'campo.codigo_verificacion_dos_pasos',))
-            ->end()
             ->end()
         ;
     }
@@ -222,36 +178,6 @@ class UsuarioAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->with('General')
-            ->add('username')
-            ->add('email')
-            ->end()
-            ->with('Groups')
-            ->add('groups')
-            ->end()
-            ->with('Profile')
-            ->add('dateOfBirth')
-            ->add('firstname')
-            ->add('lastname')
-            ->add('website')
-            ->add('biography')
-            ->add('gender')
-            ->add('locale')
-            ->add('timezone')
-            ->add('phone')
-            ->end()
-            ->with('Social')
-            ->add('facebookUid')
-            ->add('facebookName')
-            ->add('twitterUid')
-            ->add('twitterName')
-            ->add('gplusUid')
-            ->add('gplusName')
-            ->end()
-            ->with('Security')
-            ->add('token')
-            ->add('twoStepVerificationCode')
-            ->end()
         ;
     }
 }
