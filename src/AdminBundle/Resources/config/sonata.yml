@@ -1,0 +1,35 @@
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts: [admin]
+        sonata.admin.block.search_result:
+            contexts: [admin]
+sonata_user:
+    class:
+        user: Application\Sonata\UserBundle\Entity\User
+        group: Application\Sonata\UserBundle\Entity\Group
+    security_acl: false
+    manager_type: orm # can be orm or mongodb
+
+sonata_admin:
+    options:
+        html5_validate:       false
+    templates:
+        layout:                AdminBundle::standard_layout.html.twig
+
+    dashboard:
+        groups:
+            sonata_user:
+                roles: [ROLE_SUPER_ADMIN]
+                label: 'Manejo de usuarios'
+                icon:   '<i class="fa fa-lock"></i>'
+            admin:
+                roles: [ROLE_SUPER_ADMIN]
+                label: 'Admin'
+                icon:   '<i class="fa fa-signal"></i>'
+
+        blocks:
+            # display a dashboard block
+            - { position: left,  type: sonata.admin.block.admin_list, settings: { groups: [sonata_user,admin] } }
+

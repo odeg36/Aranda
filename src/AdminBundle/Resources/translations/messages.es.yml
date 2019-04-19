@@ -1,0 +1,22 @@
+titulo: 
+    usuarios: Usuarios
+    procesos: Procesos
+    sedes: Sedes
+
+campo:
+    fecha_creacion: Fecha de creación
+    descripcion: Descripción
+    numero_proceso: Número de proceso
+    presupuesto: Presupuesto
+    sede: Sede
+    nombre: Nombre
+    
+###########  Texto "List" Bradcrumb Sonata  #################
+Proceso List: Lista de procesos
+User List: Lista de usuarios
+Sede List: Lista de sedes
+
+###########  Texto "Create" Bradcrumb Sonata  #################
+Proceso Create: Crear proceso
+User Create: Crear usuario
+Sede Create: Crear sede

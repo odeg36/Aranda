@@ -1,0 +1,10 @@
+services:
+    admin.login_success_handler:
+        class: AdminBundle\Service\LoginSuccessHandler
+        arguments:  ["@router", "@security.authorization_checker"]
+    
+    sonata.user.admin.user:
+        class: AdminBundle\Admin\UsuarioAdmin
+        arguments: [~, Application\Sonata\UserBundle\Entity\User, AdminBundle:UsuarioAdmin]
+        tags:
+            - {name: sonata.admin,manager_type: orm, group: sonata_user ,label: titulo.usuarios }

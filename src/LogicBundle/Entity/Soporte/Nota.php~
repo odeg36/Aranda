@@ -1,0 +1,56 @@
+<?php
+
+namespace LogicBundle\Entity\Soporte;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Nota
+ *
+ * @ORM\Table(name="Nota")
+ * @ORM\Entity
+ */
+class Nota
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="NotCodigo", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $notCodigo;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="NotDescripcion", type="text", length=-1, nullable=true)
+     */
+    private $notDescripcion;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="NotTicket", type="string", length=20, nullable=true)
+     */
+    private $notTicket;
+
+    /**
+     * @var \DateTime|null
+     *
+     * @ORM\Column(name="Fecha", type="datetime", nullable=true)
+     */
+    private $fecha;
+
+    /**
+     * @var \Usuario
+     *
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\UserBundle\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id", referencedColumnName="Id")
+     * })
+     */
+    private $usuario;
+
+
+}
