@@ -1,10 +1,26 @@
 services:
+    security.acl.permission.map:
+        class: Sonata\AdminBundle\Security\Acl\Permission\AdminPermissionMap
     admin.login_success_handler:
         class: AdminBundle\Service\LoginSuccessHandler
         arguments:  ["@router", "@security.authorization_checker"]
-    
+
     sonata.user.admin.user:
         class: AdminBundle\Admin\UsuarioAdmin
         arguments: [~, Application\Sonata\UserBundle\Entity\User, AdminBundle:UsuarioAdmin]
         tags:
             - {name: sonata.admin,manager_type: orm, group: sonata_user ,label: titulo.usuarios }
+
+    admin.admin.nota:
+        class: AdminBundle\Admin\NotaAdmin
+        arguments: [~, LogicBundle\Entity\Soporte\Nota, AdminBundle:NotaAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Nota }
+        public: true
+
+    admin.admin.asdk_service_call:
+        class: AdminBundle\Admin\AsdkServiceCallAdmin
+        arguments: [~, ProduccionBundle\Entity\AsdkServiceCall, AdminBundle:AsdkServiceCallAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: AsdkServiceCall }
+        public: true

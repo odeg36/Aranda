@@ -39,9 +39,9 @@ class AppKernel extends Kernel
             new FOS\RestBundle\FOSRestBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new Nelmio\CorsBundle\NelmioCorsBundle(),
-            // Inder Bundles    
             new LogicBundle\LogicBundle(),
             new AdminBundle\AdminBundle(),
+            new ProduccionBundle\ProduccionBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

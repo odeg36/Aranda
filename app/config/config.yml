@@ -6,6 +6,7 @@ imports:
   - { resource: doctrine_extensions.yml }
   - { resource: "@LogicBundle/Resources/config/config.yml" }
   - { resource: "@AdminBundle/Resources/config/config.yml" }
+  - { resource: "@ProduccionBundle/Resources/config/services.yml" }
 parameters:
   locale: es
 # Put parameters here that don't need to change on each machine where the app is deployed
@@ -55,6 +56,8 @@ doctrine:
         user:     '%database_user%'
         password: '%database_password%'
         charset:  UTF8
+        mapping_types:
+          sysname: string
       produccion:
         driver:   '%database_driver2%'
         host:     '%database_host2%'
@@ -63,6 +66,8 @@ doctrine:
         user:     '%database_user2%'
         password: '%database_password2%'
         charset:  UTF8
+        mapping_types:
+          sysname: string
 
   orm:
     default_entity_manager: default
@@ -71,15 +76,11 @@ doctrine:
         connection: default
         mappings:
           ApplicationSonataUserBundle:  ~
-          LogicBundle:
-            type: "annotation"
-            dir: "Entity/Soporte"
+          LogicBundle: ~
       produccion:
         connection: produccion
         mappings:
-          LogicBundle:
-            type: "annotation"
-            dir: "Entity/Produccion"
+          ProduccionBundle: ~
 
 # Swiftmailer Configuration
 swiftmailer:

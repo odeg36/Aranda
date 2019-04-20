@@ -1,3 +1,8 @@
+produccion:
+    resource: "@ProduccionBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 homepage:
     path:   /
     defaults:  { _controller: AdminBundle:Default:index}

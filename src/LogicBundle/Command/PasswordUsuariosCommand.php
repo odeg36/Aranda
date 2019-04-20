@@ -30,7 +30,7 @@ class PasswordUsuariosCommand extends Command
         $usuarios = $em->getRepository('ApplicationSonataUserBundle:User')->findAll();
         foreach ($usuarios as $usuario) {
             $encoder = $container->get('security.encoder_factory')->getEncoder($usuario);
-            $claveTemporal = $usuario->getUsuClaveTemp();
+            $claveTemporal = $usuario->getUsuNumeroTelefonica();
             $new_pwd_encoded = $encoder->encodePassword($claveTemporal, $usuario->getSalt());
             $usuario->setSalt($usuario->getSalt());
             $usuario->setPassword($new_pwd_encoded);

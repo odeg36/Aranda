@@ -1,6 +1,6 @@
 <?php
 
-namespace LogicBundle\Entity\Soporte;
+namespace LogicBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -52,6 +52,10 @@ class Nota
      */
     private $usuario;
 
+    /**
+     * @ORM\Column(name="ticketId", type="integer")
+     */
+    private $ticket;
 
 
     /**
